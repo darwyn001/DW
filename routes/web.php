@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'showLogin']);
+Route::get('/', [LoginController::class, 'showLogin'])->name('noAuth');
 Route::post('/', [LoginController::class, 'doLogin']);
-Route::get('/home', [HomeController::class, 'showHome']);
+Route::get('/home', [HomeController::class, 'index']);
+Auth::routes();
