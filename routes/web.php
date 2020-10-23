@@ -18,5 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'showLogin'])->name('noAuth');
 Route::post('/', [LoginController::class, 'doLogin']);
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
+
+Route::view('/users', 'users')->name('users');
+Route::view('/courses', 'courses')->name('courses');
+Route::view('/projects', 'projects')->name('projects');
