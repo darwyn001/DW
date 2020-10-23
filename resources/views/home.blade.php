@@ -68,12 +68,12 @@
     <div class="container">
         <div class="row">
             {{-- El menu que se va a mostrar --}}
-            <div class="col-3">
+            <div class="col-2">
                 @include('nav')
             </div>
 
             {{-- El contenido de la pagina, donde se va a poner todo el contenido de las paginas --}}
-            <div class="col-9">
+            <div class="col-10">
                 @yield('content')
             </div>
         </div>

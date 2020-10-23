@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +24,7 @@ Route::post('/', [LoginController::class, 'doLogin']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
-Route::view('/users', 'users')->name('users');
-Route::view('/courses', 'courses')->name('courses');
-Route::view('/projects', 'projects')->name('projects');
+Route::get('/users', [UsersController::class, 'index'])->name('users');
+Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
+Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
+Route::post('/projects', [ProjectsController::class, 'uploadFile']);
