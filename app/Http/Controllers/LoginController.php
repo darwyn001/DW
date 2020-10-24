@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,9 +15,8 @@ class LoginController extends Controller
         return view('login', array());
     }
 
-    public function doLogin()
+    public function doLogin(Request $req)
     {
-        $req = Request::capture();
         $validator = Validator::make($req->all(), array(
             'email' => 'required|email',
             'password' => 'required'
@@ -33,7 +33,15 @@ class LoginController extends Controller
             );
 
             if (Auth::attempt($userdata)) {
-                return Redirect::to('/home');
+                $id = Auth::user()->roleId;
+
+                if ($id == 1) {
+                    return Redirect::to('/professor');
+                }
+                if ($id == 2) {
+                    return Redirect::to("/student");
+                }
+
             } else {
                 return Redirect::to('/')
                     ->withErrors("Usuario o contraseña incorrectos");

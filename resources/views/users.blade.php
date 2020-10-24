@@ -9,7 +9,9 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Carnet</th>
                 <th scope="col">Correo</th>
+                <th scope="col">Rol</th>
             </tr>
             </thead>
             <tbody>
@@ -17,7 +19,13 @@
                 <tr>
                     <th scope="row">{{$user ->id}}</th>
                     <td>{{$user->name}}</td>
+                    @if($user->carnet == null)
+                        <td>N/A</td>
+                    @else
+                        <td>{{$user->carnet}}</td>
+                    @endif
                     <td>{{$user->email}}</td>
+                    <td>{{$user->rol}}</td>
                 </tr>
             @endforeach
             </tbody>

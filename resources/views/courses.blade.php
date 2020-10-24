@@ -10,7 +10,9 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Estudiante</th>
                 <th scope="col">Profesor</th>
-
+                @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
+                    <th scope="col">Proyecto</th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -20,6 +22,9 @@
                     <td>{{$course->courseName}}</td>
                     <td>{{$course->studentName}}</td>
                     <td>{{$course->professorName}}</td>
+                    @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
+                        <td><a href="/projects">Ver proyectos</a></td>
+                    @endif
                 </tr>
             @endforeach
             </tbody>
