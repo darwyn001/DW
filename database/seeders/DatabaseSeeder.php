@@ -19,19 +19,42 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         User::create(array(
-            'name' => 'Usuario1',
-            'email' => 'usuario@mail.com',
+            'name' => 'Profesor 1',
+            'email' => 'profesor1@mail.com',
+            'documentId' => null,
+            'password' => Hash::make('password')
+        ));
+        User::create(array(
+            'name' => 'Profesor 2',
+            'email' => 'profesor2@mail.com',
+            'documentId' => null,
+            'password' => Hash::make('password')
+        ));
+        User::create(array(
+            'name' => 'Estudiante 1',
+            'email' => 'student1@mail.com',
+            'documentId' => '5190150000',
+            'password' => Hash::make('password')
+        ));
+        User::create(array(
+            'name' => 'Estudiante 2',
+            'email' => 'student2@mail.com',
+            'documentId' => '5190150000',
             'password' => Hash::make('password')
         ));
 
         Course::create(array(
-            'name' => 'Mate'
+            'name' => 'Desarrollo web',
+            'studentId' => 3,
+            'professorId' => 2,
         ));
         Course::create(array(
-            'name' => 'Lang'
+            'name' => 'Redes II',
+            'studentId' => 4,
+            'professorId' => 1,
         ));
 
-        UploadFile::create(array(
+        /*UploadFile::create(array(
             'name' => 'archivo1',
             'description' => 'Prueba1',
             'path' => 'Ruta1',
@@ -45,6 +68,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'archivo3',
             'description' => 'Prueba3',
             'path' => 'Ruta3',
-        ));
+        ));*/
     }
 }

@@ -8,13 +8,18 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Profesor</th>
+
             </tr>
             </thead>
             <tbody>
             @foreach($courses as $course)
                 <tr>
-                    <th scope="row">{{$course ->id}}</th>
-                    <td>{{$course->name}}</td>
+                    <th scope="row">{{$course ->courseId}}</th>
+                    <td>{{$course->courseName}}</td>
+                    <td>{{$course->studentName}}</td>
+                    <td>{{$course->professorName}}</td>
                 </tr>
             @endforeach
             </tbody>
