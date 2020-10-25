@@ -20,8 +20,8 @@
                     {{Form::text('description')}}
                 </div>
                 <div class="card-group mb-2">
-
-                    {{Form::file('file_upload')}}
+                    {{ csrf_field() }}
+                    <input type="file" name="file_upload" id="file_upload" accept='application/zip,application/rar'/>
                 </div>
                 @if($message = Session::get('success'))
                     <div class="alert alert-success">

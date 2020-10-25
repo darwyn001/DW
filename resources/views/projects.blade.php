@@ -28,7 +28,7 @@
                         </td>
                     @else
                         <td>
-                            <a href="{{"storage/".$project->path}}">
+                            <a href="{{$project->path}}">
                                 {{$project->path}}
                             </a>
                         </td>

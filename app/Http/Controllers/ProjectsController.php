@@ -15,7 +15,9 @@ class ProjectsController extends Controller
                                       from projects p, courses c, upload_files uf
                                       where p.courseId = c.id
                                       and uf.projectId = p.id
-                                      and c.studentId =' . $myId . ';');
+                                      and c.studentId =' . $myId . '
+                                      order by uf.created_at
+                                      limit 1;');
         return view('projects', ['projects' => $projects]);
     }
 }
