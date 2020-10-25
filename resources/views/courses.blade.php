@@ -13,6 +13,9 @@
                 @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
                     <th scope="col">Proyecto</th>
                 @endif
+                @if(\Illuminate\Support\Facades\Auth::user()->roleId ==1)
+                    <th scope="col">Archivos</th>
+                @endif
             </tr>
             </thead>
             <tbody>
@@ -25,8 +28,21 @@
                     @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
                         <td><a href="/projects">Ver proyectos</a></td>
                     @endif
+                    @if(!$a==null)
+
+                        @foreach($a as $info)
+                            <td>
+                                <a href="{{$info->path}}">
+                                    {{$info->path}}
+                                </a>
+                            </td>
+
+                        @endforeach
+                    @endif
                 </tr>
             @endforeach
+
+
             </tbody>
         </table>
     </div>

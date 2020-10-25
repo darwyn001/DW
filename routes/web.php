@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectsController;
@@ -38,3 +39,7 @@ Route::get('/professor', [CoursesController::class, 'index'])
 Route::get('/student', [CoursesController::class, 'index'])
     ->name('student')
     ->middleware('student');
+
+Route::get('/storage/{{filePath}}',
+    [FileController::class, 'files']
+)->where(['filePath' => '.*']);
