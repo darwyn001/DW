@@ -28,7 +28,7 @@
                     @if(\Illuminate\Support\Facades\Auth::user()->roleId ==2)
                         <td><a href="/projects">Ver proyectos</a></td>
                     @endif
-                    @if(!$a==null)
+                    @if(\Illuminate\Support\Facades\Auth::user()->roleId ==1)
 
                         @foreach($a as $info)
                             <td>
