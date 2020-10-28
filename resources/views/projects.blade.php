@@ -28,8 +28,8 @@
                         </td>
                     @else
                         <td>
-                            <a href="{{$project->path}}">
-                                {{$project->path}}
+                            <a href="/listFiles/{{$project->path}}">
+                               {{$project->path}}
                             </a>
                         </td>
                     @endif

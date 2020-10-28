@@ -3,6 +3,7 @@
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ListFilesController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\UploadFileController;
@@ -40,6 +41,4 @@ Route::get('/student', [CoursesController::class, 'index'])
     ->name('student')
     ->middleware('student');
 
-Route::get('/storage/{{filePath}}',
-    [FileController::class, 'files']
-)->where(['filePath' => '.*']);
+Route::get('/listFiles/{filePath}', [ListFilesController::class, 'index']);

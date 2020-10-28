@@ -49,7 +49,7 @@ class UploadFileController extends Controller
         $projectSelected = DB::select($projectSelectedQuery);
 
         $query = "INSERT INTO upload_files (name, description, path, projectId)
-                  values('" . $name . "','" . $description . "','" . $path . "', " . ($projectSelected[0])->id . ")";
+                  values('" . $name . "','" . $description . "','" . $folderName . "', " . ($projectSelected[0])->id . ")";
         DB::insert($query);
 
         $recentUploadedFileQuery = "select id from upload_files order by created_at limit 1;";
