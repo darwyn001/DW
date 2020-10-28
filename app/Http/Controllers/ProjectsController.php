@@ -11,13 +11,16 @@ class ProjectsController extends Controller
     {
         $myId = Auth::user()->id;
 
-        $projects = DB::select('select p.id, p.name, p.description, p.uploadedFileId, c.name courseName, uf.path
-                                      from projects p, courses c, upload_files uf
+        $projects = DB::select('select p.id, p.name, p.description, p.uploadedFileId, c.name courseName
+                                      from projects p, courses c
                                       where p.courseId = c.id
-                                      and uf.projectId = p.id
-                                      and c.studentId =' . $myId . '
-                                      order by uf.created_at
-                                      limit 1;');
-        return view('projects', ['projects' => $projects]);
+                                      and c.studentId =' . $myId . ';');
+
+        $path = DB::select('select uf.path
+                                  from projects p, courses c, upload_files uf
+                                  where p.courseId = c.id
+                                  and c.studentId=' . $myId . ';');
+
+        return view('projects', ['projects' => $projects, 'paths' => $path]);
     }
 }
