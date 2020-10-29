@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <h1 class="text-center">Proyectos</h1>
+        <div class="nav-bar-title">
+            <a class="btn btn-primary btn-light" href="/courses" role="button">< Cursos</a>
+            <h1 class="col-9 text-center">Proyectos</h1>
+        </div>
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -22,9 +25,13 @@
                     <td>{{$project->courseName}}</td>
                     @if($project->uploadedFileId == null)
                         <td>
-                            <a href="/uploadFile/{{$project->id}}">
-                                Cargar archivos!
-                            </a>
+                            @if(\Illuminate\Support\Facades\Auth::user()->roleId ==1)
+                                No cargados
+                            @else
+                                <a href="/uploadFile/{{$project->id}}">
+                                    Cargar archivos!
+                                </a>
+                            @endif
                         </td>
                     @else
                         @foreach($paths as $path )

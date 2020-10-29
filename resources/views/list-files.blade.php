@@ -2,7 +2,10 @@
 
 @section('content')
     <div>
-        <h1 class="text-center">Archivos cargados</h1>
+        <div class="nav-bar-title">
+            <a class="btn btn-primary btn-light" href="/projects" role="button">< Proyectos</a>
+            <h1 class="col-9 text-center">Archivos cargados</h1>
+        </div>
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>

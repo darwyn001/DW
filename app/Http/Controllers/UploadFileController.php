@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use ZanySoft\Zip\Zip;
@@ -20,8 +19,6 @@ class UploadFileController extends Controller
             'mimes' => 'Solo se cargaran archivos zip y rar'
         ]);
 
-        $name = $request->input('name');
-        $description = $request->input('description');
 
         $uploadedFile = $request->file('file_upload')->getClientOriginalName();
         $storedFile = time() . '_' . $uploadedFile;
@@ -42,14 +39,8 @@ class UploadFileController extends Controller
         File::delete($zipPath);
 
         //<editor-fold desc="Querys">
-        $projectSelectedQuery = "select p.id
-                                         from projects p, courses c
-                                         where p.courseid = c.id
-                                         and c.studentId =" . Auth::user()->id;
-        $projectSelected = DB::select($projectSelectedQuery);
-
-        $query = "INSERT INTO upload_files (name, description, path, projectId)
-                          values('" . $name . "','" . $description . "','" . $folderName . "', " . $project . ")";
+        $query = "INSERT INTO upload_files  path, projectId)
+                          values('" . $folderName . "', " . $project . ")";
         DB::insert($query);
 
         $recentUploadedFileQuery = "select id from upload_files order by id desc limit 1;";
@@ -72,6 +63,12 @@ class UploadFileController extends Controller
 
     public function index($projectSelected)
     {
-        return view('upload-file', ['selectedProject' => $projectSelected]);
+        $query = "select p.name, p.description, c.name as courseName
+                  from courses c, projects p
+                  where p.courseId = c.id
+                  and p.id =".$projectSelected;
+        $queryResult = DB::select($query);
+
+        return view('upload-file', ['selectedProject' => $projectSelected, 'queryResult'=>$queryResult]);
     }
 }

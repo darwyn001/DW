@@ -10,8 +10,6 @@ class UploadFile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
         'path',
     ];
 }
