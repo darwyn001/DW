@@ -10,8 +10,9 @@ use ZanySoft\Zip\Zip;
 
 class UploadFileController extends Controller
 {
-    public function uploadFile(Request $request)
+    public function uploadFile($project)
     {
+        $request = Request::capture();
         $this->validate($request, [
             'file' => 'mimes:zip,rar'
         ], $messages = [
@@ -40,37 +41,37 @@ class UploadFileController extends Controller
 
         File::delete($zipPath);
 
-
         //<editor-fold desc="Querys">
         $projectSelectedQuery = "select p.id
-                                 from projects p, courses c
-                                 where p.courseid = c.id
-                                 and c.studentId =" . Auth::user()->id;
+                                         from projects p, courses c
+                                         where p.courseid = c.id
+                                         and c.studentId =" . Auth::user()->id;
         $projectSelected = DB::select($projectSelectedQuery);
 
         $query = "INSERT INTO upload_files (name, description, path, projectId)
-                  values('" . $name . "','" . $description . "','" . $folderName . "', " . ($projectSelected[0])->id . ")";
+                          values('" . $name . "','" . $description . "','" . $folderName . "', " . $project . ")";
         DB::insert($query);
 
-        $recentUploadedFileQuery = "select id from upload_files order by created_at limit 1;";
+        $recentUploadedFileQuery = "select id from upload_files order by id desc limit 1;";
         $recentUploadedFile = DB::select($recentUploadedFileQuery);
 
 
         $update = "UPDATE projects
-                   SET uploadedFileId = '" . ($recentUploadedFile[0])->id . "'
-                   WHERE (`id` = '" . ($projectSelected[0])->id . "');";
+                           SET uploadedFileId = '" . ($recentUploadedFile[0])->id . "'
+                           WHERE (`id` = '" . $project . "');";
 
         DB::update($update);
         //</editor-fold>
 
         return back()
-            ->with('success',  'El archivo se cargó correctamente')
+            ->with('success', 'El archivo se cargó correctamente!!')
             ->with('file', $storedFile);
+
     }
 
 
-    public function index()
+    public function index($projectSelected)
     {
-        return view('upload-file');
+        return view('upload-file', ['selectedProject' => $projectSelected]);
     }
 }

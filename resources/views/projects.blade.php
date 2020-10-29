@@ -22,16 +22,21 @@
                     <td>{{$project->courseName}}</td>
                     @if($project->uploadedFileId == null)
                         <td>
-                            <a href="/uploadFile">
+                            <a href="/uploadFile/{{$project->id}}">
                                 Cargar archivos!
                             </a>
                         </td>
                     @else
-                        <td>
-                            <a href="/listFiles/{{$paths[0]->path}}">
-                               {{$paths[0]->path}}
-                            </a>
-                        </td>
+                        @foreach($paths as $path )
+                            @if($project->id == $path->id)
+                                <td>
+                                    <a href="/listFiles/{{$path->path}}">
+                                        {{$path->path}}
+                                    </a>
+                                </td>
+                            @endif
+                        @endforeach
+
                     @endif
                 </tr>
             @endforeach

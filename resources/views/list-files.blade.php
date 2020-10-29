@@ -18,7 +18,11 @@
                             {{$listFiles[$i]}}
                         </a>
                     </td>
-                    <td>1%</td>
+                    <td>
+                        <a href="#">
+                            1%
+                        </a>
+                    </td>
                 </tr>
             @endfor
             </tbody>

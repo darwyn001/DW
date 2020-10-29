@@ -16,10 +16,11 @@ class ProjectsController extends Controller
                                       where p.courseId = c.id
                                       and c.studentId =' . $myId . ';');
 
-        $path = DB::select('select uf.path
+        $path = DB::select('select uf.path, uf.projectId as id
                                   from projects p, courses c, upload_files uf
-                                  where p.courseId = c.id
-                                  and c.studentId=' . $myId . ';');
+                                  where uf.projectId = p.id
+                                  and p.courseId = c.id
+                                  and c.studentId =' . $myId . ';');
 
         return view('projects', ['projects' => $projects, 'paths' => $path]);
     }

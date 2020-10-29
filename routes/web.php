@@ -30,8 +30,8 @@ Auth::routes();
 Route::get('/users', [UsersController::class, 'index'])->name('users');
 Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
 Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-Route::get('/uploadFile', [UploadFileController::class, 'index'])->name('uploadFile');
-Route::post('/uploadFile', [UploadFileController::class, 'uploadFile']);
+Route::get('/uploadFile/{projectSelected}', [UploadFileController::class, 'index'])->name('uploadFile');
+Route::post('/uploadFile/{projectSelected}', [UploadFileController::class, 'uploadFile']);
 
 Route::get('/professor', [CoursesController::class, 'index'])
     ->name('professor')
