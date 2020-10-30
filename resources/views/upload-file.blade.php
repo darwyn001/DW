@@ -9,7 +9,6 @@
             <h1 class="col-9 text-center">Cargar archivos</h1>
         </div>
 
-        {{--{{Form::open(array('url'=>'/uploadFile', 'files'=>'true'))}}--}}
         <form method="post" action="/uploadFile/{{$selectedProject}}" files enctype="multipart/form-data">
             <div class="card mb-3">
                 <div class="card-header nav-bar-title">
@@ -52,6 +51,5 @@
                 </div>
             </div>
         </form>
-        {{--{{ Form::close() }}--}}
     </div>
 @endsection

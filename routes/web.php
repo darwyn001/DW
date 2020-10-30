@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CopyFile;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\HomeController;
@@ -22,15 +23,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'showLogin'])->name('noAuth');
 Route::post('/', [LoginController::class, 'doLogin']);
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [LoginController::class, 'showLogin'])
+    ->name('noAuth');
+
+Route::get('/home', [HomeController::class, 'index'])
+    ->name('home');
 Auth::routes();
 
-Route::get('/users', [UsersController::class, 'index'])->name('users');
-Route::get('/courses', [CoursesController::class, 'index'])->name('courses');
-Route::get('/projects', [ProjectsController::class, 'index'])->name('projects');
-Route::get('/uploadFile/{projectSelected}', [UploadFileController::class, 'index'])->name('uploadFile');
+Route::get('/users', [UsersController::class, 'index'])
+    ->name('users');
+
+Route::get('/courses', [CoursesController::class, 'index'])
+    ->name('courses');
+
+Route::get('/projects', [ProjectsController::class, 'index'])
+    ->name('projects');
+
+Route::get('/uploadFile/{projectSelected}', [UploadFileController::class, 'index'])
+    ->name('uploadFile');
+
 Route::post('/uploadFile/{projectSelected}', [UploadFileController::class, 'uploadFile']);
 
 Route::get('/professor', [CoursesController::class, 'index'])
@@ -42,3 +54,5 @@ Route::get('/student', [CoursesController::class, 'index'])
     ->middleware('student');
 
 Route::get('/listFiles/{filePath}', [ListFilesController::class, 'index']);
+
+Route::get('/copyFile/{fileInfo}', [CopyFile::class, 'index']);

@@ -17,7 +17,6 @@ class CreateUploadFilesTable extends Migration
             $table->id();
             $table->integer('projectId');
             $table->string('path');
-            $table->timestamps();
         });
     }
 

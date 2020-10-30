@@ -3,7 +3,7 @@
 @section('content')
     <div>
         <div class="nav-bar-title">
-            <a class="btn btn-primary btn-light" href="/courses" role="button">< Cursos</a>
+            <a class="btn btn-primary btn-light back-button" href="/courses" role="button">< Cursos</a>
             <h1 class="col-9 text-center">Proyectos</h1>
         </div>
         <table class="table table-striped">

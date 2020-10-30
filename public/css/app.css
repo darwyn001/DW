@@ -10914,3 +10914,9 @@ a.text-dark:focus {
   display: flex;
 }
 
+.back-button {
+  margin-top: 4px;
+  margin-bottom: 5px;
+  padding: 0.5rem;
+}
+

@@ -39,7 +39,7 @@ class UploadFileController extends Controller
         File::delete($zipPath);
 
         //<editor-fold desc="Querys">
-        $query = "INSERT INTO upload_files  path, projectId)
+        $query = "INSERT INTO upload_files  (path, projectId)
                           values('" . $folderName . "', " . $project . ")";
         DB::insert($query);
 

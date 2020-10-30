@@ -29,5 +29,10 @@ class ProjectSeeder extends Seeder
             'description' => 'CMS',
             'courseId' => 1,
         ));
+        Projects::create(array(
+            'name' => 'Proyecto 3',
+            'description' => 'API',
+            'courseId' => 1,
+        ));
     }
 }
