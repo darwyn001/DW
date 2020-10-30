@@ -10920,3 +10920,8 @@ a.text-dark:focus {
   padding: 0.5rem;
 }
 
+.note {
+  font-size: 10px;
+  font-style: italic;
+}
+

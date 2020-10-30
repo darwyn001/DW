@@ -29,11 +29,14 @@
                         <td>{{$sameRoute}}</td>
                     </tr>
                     <tr>
-                        <td>Contenido</td>
-                        <td>{{$sameCotent}}</td>
+                        <td>Contenido (Distancia de Levenshtein)</td>
+                        <td>{{$sameCotent}}%*</td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer text-right">
+                <div class="note">*Promedio de la distancia Levenshtein de todos los archivos encontrados</div>
             </div>
         </div>
 
