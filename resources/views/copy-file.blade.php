@@ -26,7 +26,7 @@
                     <tbody>
                     <tr>
                         <td>Ruta y nombre</td>
-                        <td>{{$sameRoute}}</td>
+                        <td>{{$sameRoute}} de {{$fileCounter}} archivos</td>
                     </tr>
                     <tr>
                         <td>Contenido (Distancia de Levenshtein)</td>

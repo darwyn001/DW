@@ -36,7 +36,7 @@ class CopyFile extends Controller
         }
 
         $fileCounter = 0;
-        $levenshteinDistanceTotal=0;
+        $levenshteinDistanceTotal = 0;
 
         $contentSelectedFile = Storage::disk('public')->get($fileOriginalPath);
         foreach ($resultNotLike as $notLike) {
@@ -50,11 +50,12 @@ class CopyFile extends Controller
         $sameContent = $levenshteinDistanceTotal / $fileCounter;
 
         return view('copy-file', [
-                 'fileOriginalPath' => $fileOriginalPath,
-                 'rootPath' => $rootPath,
-                 'sameRoute' => $sameRouteCounter,
-                 'sameCotent' => $sameContent
-             ]
-         );
+                'fileOriginalPath' => $fileOriginalPath,
+                'rootPath' => $rootPath,
+                'sameRoute' => $sameRouteCounter,
+                'sameCotent' => $sameContent,
+                'fileCounter' => $fileCounter
+            ]
+        );
     }
 }
